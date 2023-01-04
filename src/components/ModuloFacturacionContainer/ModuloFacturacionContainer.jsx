@@ -14,9 +14,14 @@ const ModuloFacturacionContainer = () => {
     
   return (
     <div className='moduloFacturacionContainer'>
+        <h1>Modulo de facturación</h1>
         <ModuloFacturacionTable/>
+        
         {titularSeleccionado !== null ? (
-          <FacturaTable/>
+          <>
+            <h2 style={{marginTop: '16px'}}>Facturación de {titularSeleccionado.nombre || ''} {titularSeleccionado.apellido || ''}</h2>
+            <FacturaTable/>
+          </>
         ) : false}
     </div>
   )

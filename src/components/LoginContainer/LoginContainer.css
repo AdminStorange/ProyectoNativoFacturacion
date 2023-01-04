@@ -1,0 +1,25 @@
+.loginContainer{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer .logoSignin{
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.loginContainer img{
+    width: 100%;
+    animation: rotation 10s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}

@@ -1,14 +1,21 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Navbar from './Navbar/Navbar'
+import { useNavigate } from "react-router-dom"
+import { GlobalContext } from "../context/GlobalStateContext"
+import LayoutCC from "./LayoutCC"
 
 const Layout = () => {
-  return (
-    <div style={{display: 'flex', height: '100vh'}}>
-        <Navbar/>
-        <Outlet/>
-    </div>
-  )
+
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+      localStorage.setItem('isTrustedUser', false)
+    }
+
+    return (
+      <LayoutCC
+      navigate = {navigate}
+      handleLogOut = {handleLogOut}
+      ></LayoutCC>
+    ) 
 }
 
 export default Layout

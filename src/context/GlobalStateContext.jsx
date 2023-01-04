@@ -4,6 +4,9 @@ export const GlobalContext = createContext()
 
 const GlobalStateContext = ({children}) => {
   
+    const [loaderState, setLoaderState] = useState(1)
+    const [change, setChange] = useState(true)
+
     const [propietarios, setPropietarios] = useState([])
     const [titular, setTitular] = useState(null)
     const [titularSeleccionado, setTitularSeleccionado] = useState(null)
@@ -98,7 +101,11 @@ const GlobalStateContext = ({children}) => {
         facturas,
         setFacturas,
         buscarFacturas,
-        buscarFacturaPorID
+        buscarFacturaPorID,
+        loaderState,
+        setLoaderState,
+        change,
+        setChange
     }}>
         {children}
     </GlobalContext.Provider>

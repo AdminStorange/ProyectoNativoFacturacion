@@ -104,11 +104,11 @@ export default function DetalleFacturaTable() {
             <TableRow>
                 <TableCell align='center'>ID</TableCell>
                 <TableCell align='center'>Articulo</TableCell>
+                <TableCell align='center'>Monto</TableCell>
                 <TableCell align='center'>Volumen</TableCell>
                 <TableCell align='center'>Inicio</TableCell>
                 <TableCell align='center'>Fin</TableCell>
                 <TableCell align='center'>Dias</TableCell>
-                <TableCell align='center'>Monto</TableCell>
             </TableRow>
         </TableHead>
         <TableBody>
@@ -124,7 +124,10 @@ export default function DetalleFacturaTable() {
                 {row.titulo}
               </TableCell>
               <TableCell style={{ width: 160 }} align='center'>
-                {row.volumen}m³
+                S/ {row.monto}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align='center'>
+                {row.volumen} m³
               </TableCell>
               <TableCell style={{ width: 160 }} align='center'>
                 {row.fechaDeInicio}
@@ -134,9 +137,6 @@ export default function DetalleFacturaTable() {
               </TableCell>
               <TableCell style={{ width: 160 }} align='center'>
                 {row.dias}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align='center'>
-                S/.{row.monto}
               </TableCell>
             </TableRow>
           ))}
