@@ -7,7 +7,8 @@ const classes = {
     },
     link: {
         textDecoration: 'none',
-        color: 'white'
+        color: 'white',
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
     }
 }
 

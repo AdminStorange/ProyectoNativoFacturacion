@@ -14,12 +14,11 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Loader from "./Loader/Loader";
 
 const drawerWidth = 220;
@@ -123,112 +122,114 @@ class LayoutCC extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
     return (
-      <div className={classes.root}>
+      <>
         <Loader/>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={classes.appBar}
-        >
-          <Toolbar disableGutters={true}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classes.menuButton}
-            >
-              <MenuIcon
-                classes={{
-                  root: this.state.open
-                    ? classes.menuButtonIconOpen
-                    : classes.menuButtonIconClosed
-                }}
-              />
-            </IconButton>
-            <Typography
-              variant="h6"
-              color="inherit"
-              className={classes.grow}
-              noWrap
-            >
-              Storange - Administración
-            </Typography>
-            <div>
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            className={classes.appBar}
+          >
+            <Toolbar disableGutters={true}>
               <IconButton
-                aria-owns={open ? "menu-appbar" : undefined}
-                aria-haspopup="true"
-                onClick={this.handleMenu}
                 color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerOpen}
+                className={classes.menuButton}
               >
-                <AccountCircle />
+                <MenuIcon
+                  classes={{
+                    root: this.state.open
+                      ? classes.menuButtonIconOpen
+                      : classes.menuButtonIconClosed
+                  }}
+                />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                open={open}
-                onClose={this.handleClose}
+              <Typography
+                variant="h6"
+                color="inherit"
+                className={classes.grow}
+                noWrap
               >
-                <MenuItem onClick={this.handleClose}>Mi perfil</MenuItem>
-                <MenuItem onClick={() => {
-                  this.props.handleLogOut()
-                  this.props.navigate('/')
-                }}>Salir</MenuItem>
-              </Menu>
-            </div>
-          </Toolbar>
-        </AppBar>
+                Storange - Administración
+              </Typography>
+              <div>
+                <IconButton
+                  aria-owns={open ? "menu-appbar" : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right"
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right"
+                  }}
+                  open={open}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleClose}>Mi perfil</MenuItem>
+                  <MenuItem onClick={() => {
+                    this.props.handleLogOut()
+                    this.props.navigate('/')
+                  }}>Salir</MenuItem>
+                </Menu>
+              </div>
+            </Toolbar>
+          </AppBar>
 
-        <Drawer
-          variant="permanent"
-          className={classNames(classes.drawer, {
-            [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open
-          })}
-          classes={{
-            paper: classNames({
+          <Drawer
+            variant="permanent"
+            className={classNames(classes.drawer, {
               [classes.drawerOpen]: this.state.open,
               [classes.drawerClose]: !this.state.open
-            })
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar} />
-          <List>
-            <ListItem onClick={() => this.props.navigate('/facturacion')} button key={'Facturación'}>
-              <ListItemIcon>
-                <ReceiptIcon/>
-              </ListItemIcon>
-              <ListItemText primary={'Facturación'} />
-            </ListItem>
+            })}
+            classes={{
+              paper: classNames({
+                [classes.drawerOpen]: this.state.open,
+                [classes.drawerClose]: !this.state.open
+              })
+            }}
+            open={this.state.open}
+          >
+            <div className={classes.toolbar} />
+            <List>
+              <ListItem onClick={() => this.props.navigate('/facturacion')} button key={'Facturación'}>
+                <ListItemIcon>
+                  <ReceiptIcon/>
+                </ListItemIcon>
+                <ListItemText primary={'Facturación'} />
+              </ListItem>
 
-            <ListItem onClick={() => this.props.navigate('/menu2')} button key={'Menú 2'}>
-              <ListItemIcon>
-                <WarehouseIcon/>
-              </ListItemIcon>
-              <ListItemText primary={'Menú 2'} />
-            </ListItem>
-          </List>
-        </Drawer>
+              <ListItem onClick={() => this.props.navigate('/menu2')} button key={'Menú 2'}>
+                <ListItemIcon>
+                  <WarehouseIcon/>
+                </ListItemIcon>
+                <ListItemText primary={'Menú 2'} />
+              </ListItem>
+            </List>
+          </Drawer>
 
-        
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
+          
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
 
-          <Outlet/>
-        </main>
-      </div>
+            <Outlet/>
+          </main>
+        </div>
+      </>
     );
   }
 }
